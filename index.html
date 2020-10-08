@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteMachine</title>
+    <script>
+      const QUOTEBANK = [
+        {
+          quote:
+            "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+          author: "Nelson Mandela",
+        },
+        {
+          quote: "The way to get started is to quit talking and begin doing.",
+          author: "Walt Disney",
+        },
+        {
+          quote:
+            "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.",
+          author: "Steve Jobs",
+        },
+        {
+          quote:
+            "If life were predictable it would cease to be life, and be without flavor.",
+          author: "Eleanor Roosevelt",
+        },
+        {
+          quote:
+            "You will face many defeats in life, but never let yourself be defeated.",
+          author: "Maya Angelou",
+        },
+        {
+          quote:
+            "In the end, it's not the years in your life that count. It's the life in your years.",
+          author: "Abraham Lincoln",
+        },
+      ];
+
+      window.onload = init;
+      function init() {
+        generateQuote();
+      }
+
+      function generateQuote() {
+        let randomIndex = Math.floor(Math.random() * QUOTEBANK.length);
+        let randomQuote = QUOTEBANK[randomIndex];
+
+        let twitterLink =
+          "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text=%22";
+
+        document.getElementById("tweet-quote").href = twitterLink;
+
+        // Add Quote
+        let quoteInApiFormat = randomQuote.quote.replace(/ /g, "%20");
+        twitterLink += quoteInApiFormat;
+
+        // Add Author
+        let authorInApiFormat = randomQuote.author.replace(/ /g, "%20");
+        twitterLink += authorInApiFormat;
+
+        document.getElementById("text").innerText = randomQuote.quote;
+        document.getElementById("author").innerText = randomQuote.author;
+      }
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+      </div>
+    </header>
+    <wrapper id="quote-box">
+      <div class="card text-center">
+        <div class="card-header"><h2>Famous Quote</h2></div>
+        <div class="card-body">
+          <h5 class="card-title" id="text">Special title treatment</h5>
+          <br />
+          <p class="card-text" id="author"></p>
+          <button
+            id="new-quote"
+            onclick="generateQuote()"
+            class="btn btn-danger"
+          >
+            New Quote
+          </button>
+          <a href="#" id="tweet-quote" target="_blank" class="btn btn-primary"
+            >Tweet Quote</a
+          >
+        </div>
+        <div class="card-footer text-muted">2 days ago</div>
+      </div>
+    </wrapper>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
